@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.amplifyframework:core:1.36.2@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/896715d23568f77d5ce1838415bc43d0/transformed/core-1.36.2/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/896715d23568f77d5ce1838415bc43d0/transformed/core-1.36.2/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/896715d23568f77d5ce1838415bc43d0/transformed/core-1.36.2/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amplifyframework/core/1.36.2/101508f0a57a89d4483fd426824a7027e0a10132/core-1.36.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

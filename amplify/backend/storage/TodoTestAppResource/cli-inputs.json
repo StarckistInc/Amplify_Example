@@ -1,0 +1,14 @@
+{
+  "resourceName": "TodoTestAppResource",
+  "policyUUID": "68a7b586",
+  "bucketName": "todotestf4e6b321109b48c99f8b2549cf0153e5",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}
