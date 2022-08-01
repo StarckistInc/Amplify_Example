@@ -9,7 +9,6 @@
     <string name="low">Low</string>
     <string name="medium">Medium</string>
     <string name="high">High</string>
-    <string name="sample_text">Sample Text</string>
     <string name="delete">delete</string>
     <string name="show_tasks">Show Completed Tasks</string>
     <string name="hide_tasks">Hide Completed Tasks</string>
@@ -39,8 +38,8 @@
     <string name="btn_login">로그인</string>
     <string name="btn_logout">로그아웃</string>
 
+    <string name="sample_text">Sample Text</string>
     <string name="sample_description">sample_description</string>
-
     <string name="book_name">book_name</string>
     <string name="book_description">book_description</string>
 </resources>

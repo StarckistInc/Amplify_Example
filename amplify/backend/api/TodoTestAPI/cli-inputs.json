@@ -3,10 +3,9 @@
   "serviceConfiguration": {
     "apiName": "TodoTestAPI",
     "serviceName": "AppSync",
-    "gqlSchemaPath": "/tmp/amplify-3ee109a6-16c7-4ea3-8962-0764e539a23f/amplify/backend/api/TodoTestAPI/schema.graphql",
+    "gqlSchemaPath": "/Users/penguin_kim/Dobby/test/Todo_Test/amplify/backend/api/TodoTestAPI/schema.graphql",
     "defaultAuthType": {
-      "mode": "AMAZON_COGNITO_USER_POOLS",
-      "cognitoUserPoolId": "authtodotesta10f5a90"
+      "mode": "AWS_IAM"
     },
     "conflictResolution": {
       "defaultResolutionStrategy": {
@@ -15,12 +14,9 @@
     },
     "additionalAuthTypes": [
       {
-        "mode": "AWS_IAM"
-      },
-      {
         "mode": "API_KEY",
-        "keyDescription": "api key description",
-        "expirationTime": 30
+        "expirationTime": 30,
+        "keyDescription": "api key description"
       }
     ]
   }

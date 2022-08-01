@@ -112,6 +112,8 @@ public class SignUpActivity extends FragmentActivity
                 });
             }
         });
+
+
     }
 
     private void _signIn(String username, String password) {
