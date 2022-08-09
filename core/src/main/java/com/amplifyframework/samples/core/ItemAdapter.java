@@ -96,8 +96,8 @@ public abstract class ItemAdapter<T extends Model> extends RecyclerView.Adapter<
         Model item = removeItemFromList(position);
         Amplify.DataStore.delete(
                 item,
-                deleted -> Log.i("Tutorial", "deleted item"),
-                failure -> Log.e("Tutorial", "Could not delete item", failure)
+                deleted -> Log.i("Todo", "deleted item of lists"),
+                failure -> Log.e("Todo", "Could not delete item of lists", failure)
         );
         return item;
     }

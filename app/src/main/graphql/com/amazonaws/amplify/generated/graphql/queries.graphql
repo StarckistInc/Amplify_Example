@@ -3,11 +3,12 @@ query GetTodo($id: ID!) {
   getTodo(id: $id) {
     id
     name
-    priority
-    completedAt
+    description
     createdAt
     updatedAt
-    owner
+    _version
+    _deleted
+    _lastChangedAt
   }
 }
 query ListTodos(
@@ -19,12 +20,40 @@ query ListTodos(
     items {
       id
       name
-      priority
-      completedAt
+      description
       createdAt
       updatedAt
-      owner
+      _version
+      _deleted
+      _lastChangedAt
     }
     nextToken
+    startedAt
+  }
+}
+query SyncTodos(
+  $filter: ModelTodoFilterInput
+  $limit: Int
+  $nextToken: String
+  $lastSync: AWSTimestamp
+) {
+  syncTodos(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    lastSync: $lastSync
+  ) {
+    items {
+      id
+      name
+      description
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    nextToken
+    startedAt
   }
 }

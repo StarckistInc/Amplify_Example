@@ -8,13 +8,19 @@ import java.util.List;
 
 /** This is an auto generated class representing the S3Object type in your schema. */
 public final class S3Object {
-  private final String localUri;
-  public String getLocalUri() {
-      return localUri;
+  private final String image;
+  private final String sound;
+  public String getImage() {
+      return image;
   }
   
-  private S3Object(String localUri) {
-    this.localUri = localUri;
+  public String getSound() {
+      return sound;
+  }
+  
+  private S3Object(String image, String sound) {
+    this.image = image;
+    this.sound = sound;
   }
   
   @Override
@@ -25,61 +31,74 @@ public final class S3Object {
         return false;
       } else {
       S3Object s3Object = (S3Object) obj;
-      return ObjectsCompat.equals(getLocalUri(), s3Object.getLocalUri());
+      return ObjectsCompat.equals(getImage(), s3Object.getImage()) &&
+              ObjectsCompat.equals(getSound(), s3Object.getSound());
       }
   }
   
   @Override
    public int hashCode() {
     return new StringBuilder()
-      .append(getLocalUri())
+      .append(getImage())
+      .append(getSound())
       .toString()
       .hashCode();
   }
   
-  public static LocalUriStep builder() {
+  public static BuildStep builder() {
       return new Builder();
   }
   
   public CopyOfBuilder copyOfBuilder() {
-    return new CopyOfBuilder(localUri);
+    return new CopyOfBuilder(image,
+      sound);
   }
-  public interface LocalUriStep {
-    BuildStep localUri(String localUri);
-  }
-  
-
   public interface BuildStep {
     S3Object build();
+    BuildStep image(String image);
+    BuildStep sound(String sound);
   }
   
 
-  public static class Builder implements LocalUriStep, BuildStep {
-    private String localUri;
+  public static class Builder implements BuildStep {
+    private String image;
+    private String sound;
     @Override
      public S3Object build() {
         
         return new S3Object(
-          localUri);
+          image,
+          sound);
     }
     
     @Override
-     public BuildStep localUri(String localUri) {
-        Objects.requireNonNull(localUri);
-        this.localUri = localUri;
+     public BuildStep image(String image) {
+        this.image = image;
+        return this;
+    }
+    
+    @Override
+     public BuildStep sound(String sound) {
+        this.sound = sound;
         return this;
     }
   }
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String localUri) {
-      super.localUri(localUri);
+    private CopyOfBuilder(String image, String sound) {
+      super.image(image)
+        .sound(sound);
     }
     
     @Override
-     public CopyOfBuilder localUri(String localUri) {
-      return (CopyOfBuilder) super.localUri(localUri);
+     public CopyOfBuilder image(String image) {
+      return (CopyOfBuilder) super.image(image);
+    }
+    
+    @Override
+     public CopyOfBuilder sound(String sound) {
+      return (CopyOfBuilder) super.sound(sound);
     }
   }
   

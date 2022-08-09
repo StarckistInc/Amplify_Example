@@ -1,35 +1,21 @@
 {
   "api": {
-    "TodoTestAPI": {
+    "todotest": {
       "service": "AppSync",
       "providerPlugin": "awscloudformation",
-      "dependsOn": [
-        {
-          "category": "auth",
-          "resourceName": "todotesta10f5a90",
-          "attributes": [
-            "UserPoolId"
-          ]
-        }
-      ],
+      "dependsOn": [],
       "output": {
         "authConfig": {
           "defaultAuthentication": {
-            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
-            "userPoolConfig": {
-              "userPoolId": "authtodotesta10f5a90"
+            "authenticationType": "API_KEY",
+            "apiKeyConfig": {
+              "apiKeyExpirationDays": 30,
+              "description": "api key description"
             }
           },
           "additionalAuthenticationProviders": [
             {
               "authenticationType": "AWS_IAM"
-            },
-            {
-              "authenticationType": "API_KEY",
-              "apiKeyConfig": {
-                "apiKeyExpirationDays": 30,
-                "description": "api key description"
-              }
             }
           ]
         }
@@ -37,7 +23,7 @@
     }
   },
   "auth": {
-    "todotesta10f5a90": {
+    "todotest313ed9a2": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
@@ -65,7 +51,7 @@
     }
   },
   "storage": {
-    "TodoTestAppResource": {
+    "s3b6b7e394": {
       "service": "S3",
       "providerPlugin": "awscloudformation",
       "dependsOn": []

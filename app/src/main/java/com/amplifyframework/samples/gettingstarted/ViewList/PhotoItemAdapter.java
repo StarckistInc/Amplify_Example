@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 
 import com.amplifyframework.core.Amplify;
-import com.amplifyframework.datastore.generated.model.Photo;
+import com.amplifyframework.datastore.generated.model.BookInfo;
 import com.amplifyframework.samples.core.ItemAdapter;
 import com.amplifyframework.samples.gettingstarted.R;
 import com.bumptech.glide.Glide;
@@ -19,27 +19,27 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PhotoItemAdapter extends ItemAdapter<Photo> implements Serializable {
-    private final List<Photo> photoItems;
+public class PhotoItemAdapter extends ItemAdapter<BookInfo> implements Serializable {
+    private final List<BookInfo> bookItem;
     private final PhotoItemAdapter.OnItemClickListener listener;
 
     public void observe() {
-        Amplify.DataStore.observe(Photo.class,
-                started -> Log.i("MyAmplifyApp", "Observation began."),
-                change -> Log.i("MyAmplifyApp", change.item().toString()),
-                failure -> Log.e("MyAmplifyApp", "Observation failed.", failure),
-                () -> Log.i("MyAmplifyApp", "Observation complete.")
+        Amplify.DataStore.observe(BookInfo.class,
+                started -> Log.i("BookInfo", "Book Observation began."),
+                change -> Log.i("BookInfo", change.item().toString()),
+                failure -> Log.e("BookInfo", "Book Observation failed.", failure),
+                () -> Log.i("BookInfo", "Book Observation complete.")
         );
     }
 
     public PhotoItemAdapter(OnItemClickListener listener) {
         this.listener = listener;
-        photoItems = new ArrayList<>();
+        bookItem = new ArrayList<>();
     }
 
     @Override
-    public Class<Photo> getModelClass() {
-        return Photo.class;
+    public Class<BookInfo> getModelClass() {
+        return BookInfo.class;
     }
 
     @Override
@@ -53,26 +53,24 @@ public class PhotoItemAdapter extends ItemAdapter<Photo> implements Serializable
     }
 
     public void query() {
+        Log.i("BookList", "BookInfo Query Online");
         clearList();
-        photoItems.clear();
+        bookItem.clear();
         Amplify.DataStore.query(
                 getModelClass(),
                 results -> {
                     while (results.hasNext()) {
-                        Photo item = results.next();
+                        BookInfo item = results.next();
                         addModel(item, false);
-                        photoItems.add(item);
-                        Log.i("Tutorial", "Photo Item loaded: " + item.getId());
+                        bookItem.add(item);
+                        Log.i("BookInfo", "Book Item loaded: " + item.getId());
                     }
-//                    if (cont instanceof Activity) {
-//                        ((Activity) cont).runOnUiThread(this::notifyDataSetChanged);
-//                    }
                 },
-                failure -> Log.e("Tutorial", "Photo Query Failed", failure)
+                failure -> Log.e("BookInfo", "Book Query Failed", failure)
         );
     }
 
-    public class photoItemViewHolder extends ViewHolder implements Binder<Photo>, OnClickListener {
+    public class photoItemViewHolder extends ViewHolder implements Binder<BookInfo>, OnClickListener {
         ImageView imageView;
         private final TextView textView1;
         private final TextView textView2;
@@ -98,10 +96,10 @@ public class PhotoItemAdapter extends ItemAdapter<Photo> implements Serializable
         }
 
         @Override
-        public void bind(Photo data) {
+        public void bind(BookInfo data) {
 //            imageView.setImageURI(null);
 //            Uri bookImageUri = Uri.parse(data.getPhoto().getLocalUri() + R.drawable.ic_launcher_background);
-            Glide.with(this.imageView).load(data.getPhoto().getLocalUri()).into(imageView);
+            Glide.with(this.imageView).load(data.getBookImage().getImage()).into(imageView);
             textView1.setText(data.getName());
             textView2.setText(data.getDescription());
             book_name = data.getName();

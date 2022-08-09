@@ -39,10 +39,10 @@ public class TodoItemAdapter extends ItemAdapter<Todo> implements Serializable {
     // Reacts dynamically to updates of data to the underlying Storage Engine
     public void observe() {
         Amplify.DataStore.observe(Todo.class,
-                started -> Log.i("MyAmplifyApp", "Observation began."),
-                change -> Log.i("MyAmplifyApp", change.item().toString()),
-                failure -> Log.e("MyAmplifyApp", "Observation failed.", failure),
-                () -> Log.i("MyAmplifyApp", "Observation complete.")
+                started -> Log.i("Todo", "Todo Observation began."),
+                change -> Log.i("Todo", change.item().toString()),
+                failure -> Log.e("Todo", "Todo Observation failed.", failure),
+                () -> Log.i("Todo", "Todo Observation complete.")
         );
     }
 
@@ -53,10 +53,11 @@ public class TodoItemAdapter extends ItemAdapter<Todo> implements Serializable {
 
     // Creates and returns a model
     public Todo createModel(String name, Priority priority) {
+        Todo.
         return Todo.builder()
                 .name(name)
                 .priority(priority)
-                .completedAt(null)
+                .description(null)
                 .build();
     }
 
@@ -98,7 +99,7 @@ public class TodoItemAdapter extends ItemAdapter<Todo> implements Serializable {
                         } else {
                             completedItems.add(item);
                         }
-                        Log.i("Tutorial", "Item loaded: " + item.getId());
+                        Log.i("Todo", "Todo Item loaded: " + item.getId());
                     }
                     if (!showStatus) {
                         appendList(completedItems);
@@ -180,7 +181,7 @@ public class TodoItemAdapter extends ItemAdapter<Todo> implements Serializable {
                         } else {
                             completedItems.add(item);
                         }
-                        Log.i("Tutorial", "Item loaded: " + item.getId());
+                        Log.i("Tutorial", "Todo Item loaded: " + item.getId());
                     }
                     if (!showStatus) {
                         appendList(completedItems);
@@ -189,7 +190,7 @@ public class TodoItemAdapter extends ItemAdapter<Todo> implements Serializable {
                         ((Activity) cont).runOnUiThread(this::notifyDataSetChanged);
                     }
                 },
-                failure -> Log.e("Tutorial", "Query Failed", failure)
+                failure -> Log.e("Tutorial", "Todo Query Failed", failure)
         );
     }
 

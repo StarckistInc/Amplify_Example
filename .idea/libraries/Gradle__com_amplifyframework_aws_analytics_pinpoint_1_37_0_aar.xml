@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="Gradle: com.amplifyframework:aws-analytics-pinpoint:1.37.0@aar">
+    <ANNOTATIONS>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/1ae2185d6494470587041acd8d7fb59c/transformed/aws-analytics-pinpoint-1.37.0/annotations.zip!/" />
+    </ANNOTATIONS>
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/1ae2185d6494470587041acd8d7fb59c/transformed/aws-analytics-pinpoint-1.37.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/1ae2185d6494470587041acd8d7fb59c/transformed/aws-analytics-pinpoint-1.37.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/1ae2185d6494470587041acd8d7fb59c/transformed/aws-analytics-pinpoint-1.37.0/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amplifyframework/aws-analytics-pinpoint/1.37.0/6089d0d4160b6e765b394b2282f6f9613134041f/aws-analytics-pinpoint-1.37.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

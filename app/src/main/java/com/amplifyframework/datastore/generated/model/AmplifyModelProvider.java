@@ -7,13 +7,13 @@ import com.amplifyframework.core.model.ModelProvider;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
-/** 
+/**
  *  Contains the set of model classes that implement {@link Model}
  * interface.
  */
 
 public final class AmplifyModelProvider implements ModelProvider {
-  private static final String AMPLIFY_MODEL_VERSION = "b375ebc6a39d615191c49bbf8108aaa7";
+  private static final String AMPLIFY_MODEL_VERSION = "80dab93a804ee40bd25b5b598265f3a9";
   private static AmplifyModelProvider amplifyGeneratedModelInstance;
   private AmplifyModelProvider() {
     
@@ -26,24 +26,24 @@ public final class AmplifyModelProvider implements ModelProvider {
     return amplifyGeneratedModelInstance;
   }
   
-  /** 
+  /**
    * Get a set of the model classes.
-   * 
+   *
    * @return a set of the model classes.
    */
   @Override
    public Set<Class<? extends Model>> models() {
     final Set<Class<? extends Model>> modifiableSet = new HashSet<>(
-          Arrays.<Class<? extends Model>>asList(Todo.class, Photo.class)
+          Arrays.<Class<? extends Model>>asList(BookInfo.class, Todo.class)
         );
     
         return Immutable.of(modifiableSet);
         
   }
   
-  /** 
+  /**
    * Get the version of the models.
-   * 
+   *
    * @return the version string of the models.
    */
   @Override

@@ -1,13 +1,13 @@
 export type AmplifyDependentResourcesAttributes = {
     "api": {
-        "TodoTestAPI": {
+        "todotest": {
             "GraphQLAPIKeyOutput": "string",
             "GraphQLAPIIdOutput": "string",
             "GraphQLAPIEndpointOutput": "string"
         }
     },
     "auth": {
-        "todotesta10f5a90": {
+        "todotest313ed9a2": {
             "IdentityPoolId": "string",
             "IdentityPoolName": "string",
             "UserPoolId": "string",
@@ -18,7 +18,7 @@ export type AmplifyDependentResourcesAttributes = {
         }
     },
     "storage": {
-        "TodoTestAppResource": {
+        "s3b6b7e394": {
             "BucketName": "string",
             "Region": "string"
         }

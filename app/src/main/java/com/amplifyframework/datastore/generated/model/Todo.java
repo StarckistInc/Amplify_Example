@@ -22,21 +22,26 @@ import static com.amplifyframework.core.model.query.predicate.QueryField.field;
 /** This is an auto generated class representing the Todo type in your schema. */
 @SuppressWarnings("all")
 @ModelConfig(pluralName = "Todos", authRules = {
-  @AuthRule(allow = AuthStrategy.PUBLIC, operations = { ModelOperation.CREATE, ModelOperation.UPDATE, ModelOperation.DELETE, ModelOperation.READ }),
-  @AuthRule(allow = AuthStrategy.PRIVATE, operations = { ModelOperation.CREATE, ModelOperation.UPDATE, ModelOperation.DELETE, ModelOperation.READ }),
-  @AuthRule(allow = AuthStrategy.OWNER, ownerField = "owner", identityClaim = "cognito:username", provider = "userPools", operations = { ModelOperation.CREATE, ModelOperation.UPDATE, ModelOperation.DELETE, ModelOperation.READ })
+  @AuthRule(allow = AuthStrategy.PUBLIC, operations = { ModelOperation.CREATE, ModelOperation.UPDATE, ModelOperation.DELETE, ModelOperation.READ })
 })
 public final class Todo implements Model {
   public static final QueryField ID = field("Todo", "id");
   public static final QueryField NAME = field("Todo", "name");
-  public static final QueryField COMPLETED_AT = field("Todo", "completedAt");
+  public static final QueryField DESCRIPTION = field("Todo", "description");
+  public static final QueryField DEVICE_CHECK = field("Todo", "device_Check");
+  public static final QueryField TODO_TYPE = field("Todo", "todoType");
+  public static final QueryField COMPLETE_AT = field("Todo", "completeAt");
+  public static final QueryField UPDATED_AT = field("Todo", "updatedAt");
   public static final QueryField PRIORITY = field("Todo", "priority");
   private final @ModelField(targetType="ID", isRequired = true) String id;
   private final @ModelField(targetType="String", isRequired = true) String name;
-  private final @ModelField(targetType="AWSDateTime") Temporal.DateTime completedAt;
-  private final @ModelField(targetType="Priority", isRequired = true) Priority priority;
+  private final @ModelField(targetType="String") String description;
+  private final @ModelField(targetType="String") String device_Check;
+  private final @ModelField(targetType="KindsOfTodoType") KindsOfTodoType todoType;
+  private final @ModelField(targetType="AWSDateTime") Temporal.DateTime completeAt;
+  private final @ModelField(targetType="AWSDateTime") Temporal.DateTime updatedAt;
+  private final @ModelField(targetType="Priority") Priority priority;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
-  private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
   public String getId() {
       return id;
   }
@@ -45,8 +50,24 @@ public final class Todo implements Model {
       return name;
   }
   
-  public Temporal.DateTime getCompletedAt() {
-      return completedAt;
+  public String getDescription() {
+      return description;
+  }
+  
+  public String getDeviceCheck() {
+      return device_Check;
+  }
+  
+  public KindsOfTodoType getTodoType() {
+      return todoType;
+  }
+  
+  public Temporal.DateTime getCompleteAt() {
+      return completeAt;
+  }
+  
+  public Temporal.DateTime getUpdatedAt() {
+      return updatedAt;
   }
   
   public Priority getPriority() {
@@ -57,14 +78,14 @@ public final class Todo implements Model {
       return createdAt;
   }
   
-  public Temporal.DateTime getUpdatedAt() {
-      return updatedAt;
-  }
-  
-  private Todo(String id, String name, Temporal.DateTime completedAt, Priority priority) {
+  private Todo(String id, String name, String description, String device_Check, KindsOfTodoType todoType, Temporal.DateTime completeAt, Temporal.DateTime updatedAt, Priority priority) {
     this.id = id;
     this.name = name;
-    this.completedAt = completedAt;
+    this.description = description;
+    this.device_Check = device_Check;
+    this.todoType = todoType;
+    this.completeAt = completeAt;
+    this.updatedAt = updatedAt;
     this.priority = priority;
   }
   
@@ -78,10 +99,13 @@ public final class Todo implements Model {
       Todo todo = (Todo) obj;
       return ObjectsCompat.equals(getId(), todo.getId()) &&
               ObjectsCompat.equals(getName(), todo.getName()) &&
-              ObjectsCompat.equals(getCompletedAt(), todo.getCompletedAt()) &&
+              ObjectsCompat.equals(getDescription(), todo.getDescription()) &&
+              ObjectsCompat.equals(getDeviceCheck(), todo.getDeviceCheck()) &&
+              ObjectsCompat.equals(getTodoType(), todo.getTodoType()) &&
+              ObjectsCompat.equals(getCompleteAt(), todo.getCompleteAt()) &&
+              ObjectsCompat.equals(getUpdatedAt(), todo.getUpdatedAt()) &&
               ObjectsCompat.equals(getPriority(), todo.getPriority()) &&
-              ObjectsCompat.equals(getCreatedAt(), todo.getCreatedAt()) &&
-              ObjectsCompat.equals(getUpdatedAt(), todo.getUpdatedAt());
+              ObjectsCompat.equals(getCreatedAt(), todo.getCreatedAt());
       }
   }
   
@@ -90,10 +114,13 @@ public final class Todo implements Model {
     return new StringBuilder()
       .append(getId())
       .append(getName())
-      .append(getCompletedAt())
+      .append(getDescription())
+      .append(getDeviceCheck())
+      .append(getTodoType())
+      .append(getCompleteAt())
+      .append(getUpdatedAt())
       .append(getPriority())
       .append(getCreatedAt())
-      .append(getUpdatedAt())
       .toString()
       .hashCode();
   }
@@ -104,10 +131,13 @@ public final class Todo implements Model {
       .append("Todo {")
       .append("id=" + String.valueOf(getId()) + ", ")
       .append("name=" + String.valueOf(getName()) + ", ")
-      .append("completedAt=" + String.valueOf(getCompletedAt()) + ", ")
+      .append("description=" + String.valueOf(getDescription()) + ", ")
+      .append("device_Check=" + String.valueOf(getDeviceCheck()) + ", ")
+      .append("todoType=" + String.valueOf(getTodoType()) + ", ")
+      .append("completeAt=" + String.valueOf(getCompleteAt()) + ", ")
+      .append("updatedAt=" + String.valueOf(getUpdatedAt()) + ", ")
       .append("priority=" + String.valueOf(getPriority()) + ", ")
-      .append("createdAt=" + String.valueOf(getCreatedAt()) + ", ")
-      .append("updatedAt=" + String.valueOf(getUpdatedAt()))
+      .append("createdAt=" + String.valueOf(getCreatedAt()))
       .append("}")
       .toString();
   }
@@ -116,7 +146,7 @@ public final class Todo implements Model {
       return new Builder();
   }
   
-  /** 
+  /**
    * WARNING: This method should not be used to build an instance of this object for a CREATE mutation.
    * This is a convenience method to return an instance of the object with only its ID populated
    * to be used in the context of a parameter in a delete mutation or referencing a foreign key
@@ -129,6 +159,10 @@ public final class Todo implements Model {
       id,
       null,
       null,
+      null,
+      null,
+      null,
+      null,
       null
     );
   }
@@ -136,31 +170,39 @@ public final class Todo implements Model {
   public CopyOfBuilder copyOfBuilder() {
     return new CopyOfBuilder(id,
       name,
-      completedAt,
+      description,
+      device_Check,
+      todoType,
+      completeAt,
+      updatedAt,
       priority);
   }
   public interface NameStep {
-    PriorityStep name(String name);
-  }
-  
-
-  public interface PriorityStep {
-    BuildStep priority(Priority priority);
+    BuildStep name(String name);
   }
   
 
   public interface BuildStep {
     Todo build();
     BuildStep id(String id);
-    BuildStep completedAt(Temporal.DateTime completedAt);
+    BuildStep description(String description);
+    BuildStep deviceCheck(String deviceCheck);
+    BuildStep todoType(KindsOfTodoType todoType);
+    BuildStep completeAt(Temporal.DateTime completeAt);
+    BuildStep updatedAt(Temporal.DateTime updatedAt);
+    BuildStep priority(Priority priority);
   }
   
 
-  public static class Builder implements NameStep, PriorityStep, BuildStep {
+  public static class Builder implements NameStep, BuildStep {
     private String id;
     private String name;
+    private String description;
+    private String device_Check;
+    private KindsOfTodoType todoType;
+    private Temporal.DateTime completeAt;
+    private Temporal.DateTime updatedAt;
     private Priority priority;
-    private Temporal.DateTime completedAt;
     @Override
      public Todo build() {
         String id = this.id != null ? this.id : UUID.randomUUID().toString();
@@ -168,31 +210,58 @@ public final class Todo implements Model {
         return new Todo(
           id,
           name,
-          completedAt,
+          description,
+          device_Check,
+          todoType,
+          completeAt,
+          updatedAt,
           priority);
     }
     
     @Override
-     public PriorityStep name(String name) {
+     public BuildStep name(String name) {
         Objects.requireNonNull(name);
         this.name = name;
         return this;
     }
     
     @Override
-     public BuildStep priority(Priority priority) {
-        Objects.requireNonNull(priority);
-        this.priority = priority;
+     public BuildStep description(String description) {
+        this.description = description;
         return this;
     }
     
     @Override
-     public BuildStep completedAt(Temporal.DateTime completedAt) {
-        this.completedAt = completedAt;
+     public BuildStep deviceCheck(String deviceCheck) {
+        this.device_Check = deviceCheck;
         return this;
     }
     
-    /** 
+    @Override
+     public BuildStep todoType(KindsOfTodoType todoType) {
+        this.todoType = todoType;
+        return this;
+    }
+    
+    @Override
+     public BuildStep completeAt(Temporal.DateTime completeAt) {
+        this.completeAt = completeAt;
+        return this;
+    }
+    
+    @Override
+     public BuildStep updatedAt(Temporal.DateTime updatedAt) {
+        this.updatedAt = updatedAt;
+        return this;
+    }
+    
+    @Override
+     public BuildStep priority(Priority priority) {
+        this.priority = priority;
+        return this;
+    }
+    
+    /**
      * @param id id
      * @return Current Builder instance, for fluent method chaining
      */
@@ -204,11 +273,15 @@ public final class Todo implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, String name, Temporal.DateTime completedAt, Priority priority) {
+    private CopyOfBuilder(String id, String name, String description, String deviceCheck, KindsOfTodoType todoType, Temporal.DateTime completeAt, Temporal.DateTime updatedAt, Priority priority) {
       super.id(id);
       super.name(name)
-        .priority(priority)
-        .completedAt(completedAt);
+        .description(description)
+        .deviceCheck(deviceCheck)
+        .todoType(todoType)
+        .completeAt(completeAt)
+        .updatedAt(updatedAt)
+        .priority(priority);
     }
     
     @Override
@@ -217,13 +290,33 @@ public final class Todo implements Model {
     }
     
     @Override
-     public CopyOfBuilder priority(Priority priority) {
-      return (CopyOfBuilder) super.priority(priority);
+     public CopyOfBuilder description(String description) {
+      return (CopyOfBuilder) super.description(description);
     }
     
     @Override
-     public CopyOfBuilder completedAt(Temporal.DateTime completedAt) {
-      return (CopyOfBuilder) super.completedAt(completedAt);
+     public CopyOfBuilder deviceCheck(String deviceCheck) {
+      return (CopyOfBuilder) super.deviceCheck(deviceCheck);
+    }
+    
+    @Override
+     public CopyOfBuilder todoType(KindsOfTodoType todoType) {
+      return (CopyOfBuilder) super.todoType(todoType);
+    }
+    
+    @Override
+     public CopyOfBuilder completeAt(Temporal.DateTime completeAt) {
+      return (CopyOfBuilder) super.completeAt(completeAt);
+    }
+    
+    @Override
+     public CopyOfBuilder updatedAt(Temporal.DateTime updatedAt) {
+      return (CopyOfBuilder) super.updatedAt(updatedAt);
+    }
+    
+    @Override
+     public CopyOfBuilder priority(Priority priority) {
+      return (CopyOfBuilder) super.priority(priority);
     }
   }
   

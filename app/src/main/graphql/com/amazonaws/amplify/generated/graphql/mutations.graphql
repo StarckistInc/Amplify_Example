@@ -6,11 +6,12 @@ mutation CreateTodo(
   createTodo(input: $input, condition: $condition) {
     id
     name
-    priority
-    completedAt
+    description
     createdAt
     updatedAt
-    owner
+    _version
+    _deleted
+    _lastChangedAt
   }
 }
 mutation UpdateTodo(
@@ -20,11 +21,12 @@ mutation UpdateTodo(
   updateTodo(input: $input, condition: $condition) {
     id
     name
-    priority
-    completedAt
+    description
     createdAt
     updatedAt
-    owner
+    _version
+    _deleted
+    _lastChangedAt
   }
 }
 mutation DeleteTodo(
@@ -34,10 +36,11 @@ mutation DeleteTodo(
   deleteTodo(input: $input, condition: $condition) {
     id
     name
-    priority
-    completedAt
+    description
     createdAt
     updatedAt
-    owner
+    _version
+    _deleted
+    _lastChangedAt
   }
 }

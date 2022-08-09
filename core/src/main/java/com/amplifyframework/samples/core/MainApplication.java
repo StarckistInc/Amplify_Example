@@ -5,7 +5,6 @@ import android.util.Log;
 
 import com.amplifyframework.AmplifyException;
 import com.amplifyframework.api.aws.AWSApiPlugin;
-import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.AWSDataStorePlugin;
@@ -21,9 +20,9 @@ public class MainApplication extends Application {
             Amplify.addPlugin(new AWSDataStorePlugin());
             Amplify.addPlugin(new AWSApiPlugin());
             Amplify.configure(getApplicationContext());
-            Log.i("MyAmplifyApp", "Initialized Amplify");
+            Log.i("Todo", "Initialized Amplify");
         } catch (AmplifyException failure) {
-            Log.e("MyAmplifyApp", "Could not initialize Amplify", failure);
+            Log.e("Todo", "Could not initialize Amplify", failure);
         }
     }
 }

@@ -1,0 +1,67 @@
+enum Priority {
+  LOW
+  NORMAL
+  HIGH
+}
+
+enum KindsOfStudy {
+  EBBING
+  CIRCULATEREADING
+}
+
+enum KindsOfPublisher {
+  YBM
+  SIWON
+  HACKERS
+  ETS
+  PAGODA
+  NE
+}
+
+type S3Object {
+  image: String
+  sound: String
+}
+
+type ChapterSoun {
+  Chapter01: Int
+  Chapter02: Int
+  Chapter03: Int
+  Chapter04: Int
+  Chapter05: Int
+  Chapter06: Int
+  Chapter07: Int
+  Chapter08: Int
+  Chapter09: Int
+  Chapter10: Int
+}
+
+type BookInfo @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String
+  description: String
+  chapter_Min: Int
+  chapter_Max: Int
+  chapter_Sound: ChapterSoun
+  book_Image: S3Object
+  book_Publisher: KindsOfPublisher
+  study_Type: KindsOfStudy
+  complete_Rate: Int
+}
+
+enum KindsOfTodoType {
+  STUDY
+  TEST
+}
+
+type Todo @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String!
+  description: String
+  device_Check: String
+  todoType: KindsOfTodoType
+  completeAt: AWSDateTime
+  updatedAt: AWSDateTime
+  priority: Priority
+}
+ 

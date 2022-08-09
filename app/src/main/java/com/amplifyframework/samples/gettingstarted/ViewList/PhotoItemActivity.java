@@ -55,6 +55,6 @@ public class PhotoItemActivity extends ListActivity implements PhotoItemAdapter.
 
     @Override
     public void onBookClick(int position, String book_name, String book_description) {
-        Log.i("MyAmplifyApp", "Book is Clicked");
+        Log.i("Todo ", "Book is Clicked");
     }
 }

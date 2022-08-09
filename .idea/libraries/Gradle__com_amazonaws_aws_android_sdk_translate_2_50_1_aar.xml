@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.amazonaws:aws-android-sdk-translate:2.50.1@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/129785e1b94f15809935c7d71d912629/transformed/aws-android-sdk-translate-2.50.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/129785e1b94f15809935c7d71d912629/transformed/aws-android-sdk-translate-2.50.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/129785e1b94f15809935c7d71d912629/transformed/aws-android-sdk-translate-2.50.1/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-android-sdk-translate/2.50.1/f28b0bf7a7380e0c3d3c420b14355a759785f8dd/aws-android-sdk-translate-2.50.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
