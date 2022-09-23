@@ -53,7 +53,6 @@ public class TodoItemAdapter extends ItemAdapter<Todo> implements Serializable {
 
     // Creates and returns a model
     public Todo createModel(String name, Priority priority) {
-        Todo.
         return Todo.builder()
                 .name(name)
                 .priority(priority)

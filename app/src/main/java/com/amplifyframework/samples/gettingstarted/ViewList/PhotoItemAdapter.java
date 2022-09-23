@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 
 import com.amplifyframework.core.Amplify;
-import com.amplifyframework.datastore.generated.model.BookInfo;
+import com.amplifyframework.datastore.generated.model.Book;
 import com.amplifyframework.samples.core.ItemAdapter;
 import com.amplifyframework.samples.gettingstarted.R;
 import com.bumptech.glide.Glide;
@@ -19,12 +19,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PhotoItemAdapter extends ItemAdapter<BookInfo> implements Serializable {
-    private final List<BookInfo> bookItem;
+public class PhotoItemAdapter extends ItemAdapter<Book> implements Serializable {
+    private final List<Book> bookItem;
     private final PhotoItemAdapter.OnItemClickListener listener;
 
     public void observe() {
-        Amplify.DataStore.observe(BookInfo.class,
+        Amplify.DataStore.observe(Book.class,
                 started -> Log.i("BookInfo", "Book Observation began."),
                 change -> Log.i("BookInfo", change.item().toString()),
                 failure -> Log.e("BookInfo", "Book Observation failed.", failure),
@@ -38,8 +38,8 @@ public class PhotoItemAdapter extends ItemAdapter<BookInfo> implements Serializa
     }
 
     @Override
-    public Class<BookInfo> getModelClass() {
-        return BookInfo.class;
+    public Class<Book> getModelClass() {
+        return Book.class;
     }
 
     @Override
@@ -60,7 +60,7 @@ public class PhotoItemAdapter extends ItemAdapter<BookInfo> implements Serializa
                 getModelClass(),
                 results -> {
                     while (results.hasNext()) {
-                        BookInfo item = results.next();
+                        Book item = results.next();
                         addModel(item, false);
                         bookItem.add(item);
                         Log.i("BookInfo", "Book Item loaded: " + item.getId());
@@ -70,7 +70,7 @@ public class PhotoItemAdapter extends ItemAdapter<BookInfo> implements Serializa
         );
     }
 
-    public class photoItemViewHolder extends ViewHolder implements Binder<BookInfo>, OnClickListener {
+    public class photoItemViewHolder extends ViewHolder implements Binder<Book>, OnClickListener {
         ImageView imageView;
         private final TextView textView1;
         private final TextView textView2;
@@ -96,10 +96,10 @@ public class PhotoItemAdapter extends ItemAdapter<BookInfo> implements Serializa
         }
 
         @Override
-        public void bind(BookInfo data) {
+        public void bind(Book data) {
 //            imageView.setImageURI(null);
 //            Uri bookImageUri = Uri.parse(data.getPhoto().getLocalUri() + R.drawable.ic_launcher_background);
-            Glide.with(this.imageView).load(data.getBookImage().getImage()).into(imageView);
+            Glide.with(this.imageView).load(data.getImage().getLocalUri()).into(imageView);
             textView1.setText(data.getName());
             textView2.setText(data.getDescription());
             book_name = data.getName();
